@@ -17,5 +17,5 @@ This repository will have all the resources for Flutter's beginner course presen
 10. Testing Your Widgets
 
 ## YouTube Playlist:
-[Week #1: Introduction](https://www.youtube.com/watch?v=UiX96etg-aI)
-[Week #2: Welcome to the Dart Side](https://youtu.be/vAVXixRk3fk)
+- [Week #1: Introduction](https://www.youtube.com/watch?v=UiX96etg-aI)
+- [Week #2: Welcome to the Dart Side](https://youtu.be/vAVXixRk3fk)
