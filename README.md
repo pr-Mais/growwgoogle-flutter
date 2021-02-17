@@ -4,7 +4,7 @@ Welcome Friend :)
 
 This repository will have all the resources for Flutter's beginner course presented with Grow with Google MENA, prepared by [Mais](twitter.com/pr_mais).
 
-## Weeks list:
+## Topics list:
 1. Introduction to Flutter
 2. Welcome to The Dart Side
 3. Basic Widgets & Material Design
@@ -18,3 +18,4 @@ This repository will have all the resources for Flutter's beginner course presen
 
 ## YouTube Playlist:
 [Week #1: Introduction](https://www.youtube.com/watch?v=UiX96etg-aI)
+[Week #2: Welcome to the Dart Side](https://youtu.be/vAVXixRk3fk)
