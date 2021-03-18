@@ -19,3 +19,4 @@ This repository will have all the resources for Flutter's beginner course presen
 ## YouTube Playlist:
 - [Week #1: Introduction](https://www.youtube.com/watch?v=UiX96etg-aI)
 - [Week #2: Welcome to the Dart Side](https://youtu.be/vAVXixRk3fk)
+- [Week #3: Basic Widgets and Material Design](https://youtu.be/Vk5vGv541N8)
