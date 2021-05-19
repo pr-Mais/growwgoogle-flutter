@@ -21,6 +21,7 @@ This repository will have all the resources for Flutter's beginner course presen
 - [Week #2: Welcome to the Dart Side](https://youtu.be/vAVXixRk3fk)
 - [Week #3: Basic Widgets and Material Design](https://youtu.be/Vk5vGv541N8)
 - [Week #4: Build Your First Flutter App](https://youtu.be/nPHJx563jn4)
+  - [Grocery App source code](https://github.com/pr-Mais/grocery_app)
 
 ## Resources
 * The ultimate resource to get started with Flutter correctly is: [flutter.dev](flutter.dev)
