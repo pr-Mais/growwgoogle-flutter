@@ -58,62 +58,57 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Welcome to your Home'),
       ),
       body: Column(
         children: [
-          Expanded(
-            child: Column(
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: controller,
-                          decoration: InputDecoration(hintText: 'Add items to your list'),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.add),
-                        onPressed: () {
-                          if (controller.text.isNotEmpty) {
-                            setState(() {
-                              myList.add(controller.text);
-                            });
-
-                            controller.clear();
-
-                            _updateMyRecord();
-                          }
-                        },
-                      )
-                    ],
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    decoration: InputDecoration(hintText: 'Add items to your list'),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: myList.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(myList[index]),
-                        leading: Text('${index + 1}'),
-                        trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            setState(() {
-                              myList.remove(myList[index]);
-                            });
-                            _updateMyRecord();
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    if (controller.text.isNotEmpty) {
+                      setState(() {
+                        myList.add(controller.text);
+                      });
+
+                      controller.clear();
+
+                      _updateMyRecord();
+                    }
+                  },
                 )
               ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: myList.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(myList[index]),
+                  leading: Text('${index + 1}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        myList.remove(myList[index]);
+                      });
+                      _updateMyRecord();
+                    },
+                  ),
+                );
+              },
             ),
           ),
           Padding(
