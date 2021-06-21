@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
     try {
       await FirebaseAuth.instance.signInAnonymously();
 
-      Navigator.of(context).pushReplacementNamed('/');
+      Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
     } catch (e) {
       //TODO handle errors better
       log('$e');
