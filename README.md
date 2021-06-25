@@ -22,6 +22,8 @@ This repository will have all the resources for Flutter's beginner course presen
 - [Week #3: Basic Widgets and Material Design](https://youtu.be/Vk5vGv541N8)
 - [Week #4: Build Your First Flutter App](https://youtu.be/nPHJx563jn4)
   - [Grocery App source code](https://github.com/pr-Mais/grocery_app)
+- [Week #5: Flutter & Backend](https://youtu.be/LGKKSMKvvFM)
+  - Code for apps built in this stream are available inside [examples](https://github.com/pr-Mais/growwgoogle-flutter/tree/main/examples) folder.
 
 ## Resources
 * The ultimate resource to get started with Flutter correctly is: [flutter.dev](flutter.dev)
@@ -29,4 +31,5 @@ This repository will have all the resources for Flutter's beginner course presen
 * Practice on Dart and Flutter immediately through your browser: [dartpad.dev](dartpad.dev)
 * [Write your first Flutter app: part 1](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1#0)
 * [Write your first Flutter app: part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2/#0)
+* [FlutterFire: your first resource to learn about Firebase for Flutter](https://firebase.flutter.dev)
 
