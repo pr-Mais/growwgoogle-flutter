@@ -12,13 +12,15 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool loading = false;
+
   Future<void> _loginAnon() async {
     setState(() {
       loading = !loading;
     });
 
     try {
-      await FirebaseAuth.instance.signInAnonymously();
+      final UserCredential userCred = await FirebaseAuth.instance.signInAnonymously();
+      log(userCred.user!.uid);
 
       Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
     } catch (e) {

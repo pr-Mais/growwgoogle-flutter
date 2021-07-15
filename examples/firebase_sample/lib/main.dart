@@ -16,6 +16,7 @@ class InitialView extends StatefulWidget {
 
 class _InitialViewState extends State<InitialView> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -24,13 +25,13 @@ class _InitialViewState extends State<InitialView> {
         // Check for errors
         if (snapshot.hasError) {
           return Center(
-            child: Text("🤕 Something weent wrong"),
+            child: Text("🤕 Something went wrong"),
           );
         }
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return FirebasseApp();
+          return MyFirebaseApp();
         }
 
         return Material(
@@ -43,29 +44,29 @@ class _InitialViewState extends State<InitialView> {
   }
 }
 
-class FirebasseApp extends StatefulWidget {
-  FirebasseApp({
+class MyFirebaseApp extends StatefulWidget {
+  MyFirebaseApp({
     Key? key,
   }) : super(key: key);
 
   @override
-  _FirebasseAppState createState() => _FirebasseAppState();
+  _MyFirebaseAppState createState() => _MyFirebaseAppState();
 }
 
-class _FirebasseAppState extends State<FirebasseApp> {
-  late final _stream;
+class _MyFirebaseAppState extends State<MyFirebaseApp> {
+  late final Stream<User?> _userStream;
 
   @override
   void initState() {
-    _stream = FirebaseAuth.instance.authStateChanges();
+    _userStream = FirebaseAuth.instance.authStateChanges();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: _stream,
-      builder: (context, snapshot) {
+    return StreamBuilder<User?>(
+      stream: _userStream,
+      builder: (context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           return MaterialApp(
             theme: ThemeData(

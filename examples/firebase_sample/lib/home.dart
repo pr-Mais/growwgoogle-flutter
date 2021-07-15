@@ -35,10 +35,14 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> _updateMyRecord() async {
-    await FirebaseFirestore.instance.collection('user').doc(currentUser?.uid).set(
-      {'list': myList},
-      SetOptions(mergeFields: ['list']),
-    );
+    try {
+      await FirebaseFirestore.instance.collection('user').doc(currentUser?.uid).set(
+        {'list': myList},
+        SetOptions(mergeFields: ['list']),
+      );
+    } catch (e) {
+      log('$e');
+    }
   }
 
   Future<void> _getMyListFromFirestore() async {
@@ -92,24 +96,26 @@ class _HomeState extends State<Home> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: myList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(myList[index]),
-                  leading: Text('${index + 1}'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      setState(() {
-                        myList.remove(myList[index]);
-                      });
-                      _updateMyRecord();
+            child: myList.isEmpty
+                ? Center(child: Text('Empty list.'))
+                : ListView.builder(
+                    itemCount: myList.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(myList[index]),
+                        leading: Text('${index + 1}'),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            setState(() {
+                              myList.remove(myList[index]);
+                            });
+                            _updateMyRecord();
+                          },
+                        ),
+                      );
                     },
                   ),
-                );
-              },
-            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 40.0),
