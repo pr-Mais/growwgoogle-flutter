@@ -42,6 +42,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: Text('FlutterFire'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

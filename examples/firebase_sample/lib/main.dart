@@ -1,9 +1,13 @@
+import 'package:firebase_sample/settings.dart';
 import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 import 'package:firebase_sample/home.dart';
 import 'package:firebase_sample/login.dart';
+import 'package:firebase_sample/theme.dart';
 
 void main() {
   runApp(InitialView());
@@ -68,15 +72,23 @@ class _MyFirebaseAppState extends State<MyFirebaseApp> {
       stream: _userStream,
       builder: (context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          return MaterialApp(
-            theme: ThemeData(
-              primarySwatch: Colors.orange,
+          return ChangeNotifierProvider<AppTheme>(
+            create: (_) => AppTheme(),
+            child: Consumer<AppTheme>(
+              builder: (context, AppTheme theme, __) {
+                return MaterialApp(
+                  themeMode: theme.themeMode,
+                  darkTheme: ThemeData.dark(),
+                  theme: ThemeData.light(),
+                  routes: {
+                    '/login': (_) => Login(),
+                    '/': (_) => Home(),
+                    '/settings': (_) => SettingsView(),
+                  },
+                  initialRoute: snapshot.hasData ? '/' : '/login',
+                );
+              },
             ),
-            routes: {
-              '/login': (_) => Login(),
-              '/': (_) => Home(),
-            },
-            initialRoute: snapshot.hasData ? '/' : '/login',
           );
         }
 

@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' as intl;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_sample/theme.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -65,6 +67,15 @@ class _HomeState extends State<Home> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Welcome to your Home'),
+        centerTitle: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/settings');
+            },
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -102,7 +113,10 @@ class _HomeState extends State<Home> {
                     itemCount: myList.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(myList[index]),
+                        title: Text(
+                          myList[index],
+                          textAlign: intl.Bidi.isRtlLanguage(myList[index]) ? TextAlign.right : TextAlign.left,
+                        ),
                         leading: Text('${index + 1}'),
                         trailing: IconButton(
                           icon: Icon(Icons.delete),
