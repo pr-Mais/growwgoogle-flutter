@@ -23,21 +23,18 @@ Future<http.Response> _mockResponse(http.Request req) async {
 }
 
 void main() {
-  late http.Client client;
-
   setUp(() {
-    client = http_test.MockClient(_mockResponse);
+    CatsAPI.instance.setClient(http_test.MockClient(_mockResponse));
   });
 
   group('$CatsAPI', () {
     test('200 response', () async {
-      final res =
-          await CatsAPI.withClient(client).checkStatusCode('google.com');
+      final res = await CatsAPI.instance.checkStatusCode('google.com');
 
       expect(res, '200');
     });
     test('404 response', () async {
-      final res = await CatsAPI.withClient(client).checkStatusCode('none.com');
+      final res = await CatsAPI.instance.checkStatusCode('none.com');
 
       expect(res, '404');
     });
@@ -45,7 +42,7 @@ void main() {
   group('$Home', () {
     testWidgets('200 shows cat image', (WidgetTester tester) async {
       await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(Home(client: client));
+        await tester.pumpWidget(MyApp());
 
         await tester.enterText(find.byType(TextField), 'google.com');
 

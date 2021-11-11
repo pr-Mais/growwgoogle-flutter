@@ -4,13 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(Home());
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Home(),
+    );
+  }
 }
 
 class Home extends StatefulWidget {
-  Home({Key? key, this.client}) : super(key: key);
-
-  final http.Client? client;
+  Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -20,21 +31,10 @@ class _HomeState extends State<Home> {
   TextEditingController controller = TextEditingController();
   String statusCode = '';
 
-  late CatsAPI cats;
-
-  @override
-  void initState() {
-    if (widget.client != null) {
-      cats = CatsAPI.withClient(widget.client!);
-    } else {
-      cats = CatsAPI();
-    }
-    super.initState();
-  }
-
   onSearch() async {
     try {
-      final _statusCode = await cats.checkStatusCode(controller.text);
+      final _statusCode =
+          await CatsAPI.instance.checkStatusCode(controller.text);
 
       setState(() {
         statusCode = _statusCode;
@@ -109,12 +109,16 @@ class _HomeState extends State<Home> {
 }
 
 class CatsAPI {
-  @visibleForTesting
-  CatsAPI.withClient(http.Client client) : _client = client;
+  CatsAPI._();
 
-  CatsAPI();
+  static CatsAPI instance = CatsAPI._();
 
   http.Client? _client;
+
+  @visibleForTesting
+  setClient(client) {
+    _client = client;
+  }
 
   Future<String> checkStatusCode(String link) async {
     try {
