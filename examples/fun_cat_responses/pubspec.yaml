@@ -26,6 +26,8 @@ dependencies:
   http: ^0.13.3
 
 dev_dependencies:
+  mockito: ^5.0.16
+  network_image_mock: ^2.0.1
   flutter_test:
     sdk: flutter
 
